@@ -26,6 +26,8 @@
     var graticule = d3.geoGraticule10();
 
     var rotation = [10, -12];
+    var dragging = false;
+    var last = [0, 0];
     var countries = null;
 
     fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
@@ -80,35 +82,35 @@
 
       context.beginPath();
       path({ type: 'Sphere' });
-      context.fillStyle = '#ece0c8';
+      context.fillStyle = '#fcfcfb';
       context.fill();
 
       context.beginPath();
       path(graticule);
-      context.strokeStyle = 'rgba(33,26,20,0.08)';
+      context.strokeStyle = 'rgba(20,20,20,0.07)';
       context.lineWidth = 0.6;
       context.stroke();
 
       context.beginPath();
       path({ type: 'Sphere' });
-      context.strokeStyle = 'rgba(109,21,38,0.35)';
+      context.strokeStyle = 'rgba(20,20,20,0.22)';
       context.lineWidth = 1;
       context.stroke();
 
       if (countries && countries.length) {
         countries.forEach(function (f) {
           context.save();
-          context.shadowColor = 'rgba(18,36,94,0.9)';
+          context.shadowColor = 'rgba(37,99,235,0.9)';
           context.shadowBlur = 14;
           context.beginPath();
           path(f);
-          context.fillStyle = 'rgba(24,52,130,0.6)';
+          context.fillStyle = 'rgba(59,130,246,0.55)';
           context.fill();
           context.restore();
 
           context.beginPath();
           path(f);
-          context.strokeStyle = 'rgba(8,19,56,0.9)';
+          context.strokeStyle = 'rgba(29,78,216,0.9)';
           context.lineWidth = 1.1;
           context.stroke();
         });
@@ -138,10 +140,27 @@
     }
 
     function tick() {
-      rotation[0] += 0.15;
+      if (!dragging) rotation[0] += 0.15;
       render();
       requestAnimationFrame(tick);
     }
+
+    function startDrag(x, y) { dragging = true; last = [x, y]; }
+    function moveDrag(x, y) {
+      if (!dragging) return;
+      var dx = x - last[0], dy = y - last[1];
+      rotation[0] += dx * 0.3;
+      rotation[1] = Math.max(-80, Math.min(80, rotation[1] - dy * 0.3));
+      last = [x, y];
+    }
+    function endDrag() { dragging = false; }
+
+    canvas.addEventListener('mousedown', function (e) { startDrag(e.clientX, e.clientY); });
+    window.addEventListener('mousemove', function (e) { moveDrag(e.clientX, e.clientY); });
+    window.addEventListener('mouseup', endDrag);
+    canvas.addEventListener('touchstart', function (e) { var t = e.touches[0]; startDrag(t.clientX, t.clientY); }, { passive: true });
+    window.addEventListener('touchmove', function (e) { var t = e.touches[0]; moveDrag(t.clientX, t.clientY); }, { passive: true });
+    window.addEventListener('touchend', endDrag);
 
     tick();
   }
