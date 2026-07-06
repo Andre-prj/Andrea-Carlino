@@ -33,6 +33,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Delete old github-pages artifact
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: github-pages
+        continue-on-error: true  # Don't fail if artifact doesn't exist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
