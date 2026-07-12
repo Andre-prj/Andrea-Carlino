@@ -181,7 +181,7 @@
 [Uganda] no
 [Ukraine] no
 [United Arab Emirates] no
-[United Kingdom] no
+[United Kingdom] yes
 [United States of America] yes
 [Uruguay] no
 [Uzbekistan] no

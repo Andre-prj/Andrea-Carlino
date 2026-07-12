@@ -43,8 +43,8 @@
     opacity: 0; transition: opacity 0.6s ease;
   }
   #globe {
-    position: absolute; top: 22%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 210px; height: 210px; pointer-events: none;
+    position: absolute; top: 21%; left: 51.15%; transform: translate(-50%, -50%);
+    width: 225px; height: 225px; pointer-events: none;
     opacity: 0; transition: opacity 0.6s ease;
   }
   .boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
@@ -57,7 +57,7 @@
     <img class="dark-overlay" src="boat.svg" alt="">
     <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
     <div class="world-title">World<br>Project.</div>
-    <canvas id="globe" width="210" height="210"></canvas>
+    <canvas id="globe" width="225" height="225"></canvas>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -85,8 +85,8 @@
         countries = feats.filter(function (f) { return targetNames.indexOf(f.properties.name) !== -1; });
       }).catch(function () { countries = []; });
       function drawPin(x, y, scale, angle) {
-        var s = Math.max(scale, 0.34);
-        var rodLength = 19 * s, rodWidth = 2.6 * s;
+        var s = Math.max(scale, 0.02);
+        var rodLength = 19 * s, rodWidth = 1.5 * s;
         context.save();
         context.translate(x, y);
         context.rotate(angle);
@@ -98,7 +98,7 @@
         rodGrad.addColorStop(0, '#6b7178'); rodGrad.addColorStop(0.5, '#e4e7ea'); rodGrad.addColorStop(1, '#4d5257');
         context.fillStyle = rodGrad;
         context.fillRect(-rodWidth / 2, -rodLength, rodWidth, rodLength);
-        var ballR = 4.6 * s;
+        var ballR = 3.1 * s;
         var ballGrad = context.createRadialGradient(-ballR * 0.3, -rodLength - ballR * 0.35, ballR * 0.15, 0, -rodLength, ballR);
         ballGrad.addColorStop(0, '#ff7a6b'); ballGrad.addColorStop(0.55, '#c0392b'); ballGrad.addColorStop(1, '#7e2015');
         context.beginPath();
@@ -136,12 +136,12 @@
         });
         pins.sort(function (a, b) { return a.z - b.z; });
         pins.forEach(function (p) {
-          var scale = 0.55 + 0.55 * p.z;
+          var scale = p.z;
           var angle = Math.atan2(p.x - size / 2, -(p.y - size / 2));
           drawPin(p.x, p.y, scale, angle);
         });
       }
-      function tick() { rotation[0] += 0.35; render(); requestAnimationFrame(tick); }
+      function tick() { rotation[0] += 0.55; render(); requestAnimationFrame(tick); }
       tick();
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
