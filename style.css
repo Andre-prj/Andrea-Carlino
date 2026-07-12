@@ -70,8 +70,14 @@ img { width: 100%; height: auto; display: block; }
   stroke-dasharray: 24 30 10 36;
   animation: foam-flow-b 6.5s linear infinite;
 }
-@keyframes foam-flow-a { to { stroke-dashoffset: -162; } }
-@keyframes foam-flow-b { to { stroke-dashoffset: -100; } }
+@keyframes foam-flow-a {
+  from { stroke-dashoffset: var(--so, 0px); }
+  to { stroke-dashoffset: calc(var(--so, 0px) - 162px); }
+}
+@keyframes foam-flow-b {
+  from { stroke-dashoffset: var(--so, 0px); }
+  to { stroke-dashoffset: calc(var(--so, 0px) - 100px); }
+}
 .splash {
   fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; opacity: 0;
   transform-origin: 524px 155px; transform-box: view-box;
@@ -97,5 +103,11 @@ img { width: 100%; height: auto; display: block; }
 }
 .wake-streak:nth-of-type(3n) { animation-duration: 6.1s; animation-delay: -1.7s; stroke-width: 6; }
 .wake-streak:nth-of-type(3n+1) { animation-delay: -3.4s; }
-@keyframes wake-flow-a { to { stroke-dashoffset: -212; } }
-@keyframes wake-flow-b { to { stroke-dashoffset: -176; } }
+@keyframes wake-flow-a {
+  from { stroke-dashoffset: var(--so, 0px); }
+  to { stroke-dashoffset: calc(var(--so, 0px) - 212px); }
+}
+@keyframes wake-flow-b {
+  from { stroke-dashoffset: var(--so, 0px); }
+  to { stroke-dashoffset: calc(var(--so, 0px) - 176px); }
+}

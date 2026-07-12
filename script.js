@@ -11,6 +11,13 @@
     boatWrap.classList.toggle('dark');
     pressCircle.style.display = 'none';
   });
+
+  var foam = document.querySelector('.foam-overlay');
+  function syncFoamToScroll() {
+    foam.style.setProperty('--so', (-window.scrollY * 1026 / boatWrap.clientWidth) + 'px');
+  }
+  window.addEventListener('scroll', syncFoamToScroll, { passive: true });
+  syncFoamToScroll();
 })();
 
 (function () {
