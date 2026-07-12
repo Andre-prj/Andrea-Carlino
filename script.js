@@ -65,13 +65,13 @@
       context.clearRect(0, 0, size, size);
       projection.rotate(rotation);
       context.save();
-      context.shadowColor = 'rgba(0,0,0,0.6)'; context.shadowBlur = 16;
-      context.shadowOffsetX = -7; context.shadowOffsetY = 11;
+      context.shadowColor = 'rgba(0,0,0,0.65)'; context.shadowBlur = 8;
+      context.shadowOffsetX = -3; context.shadowOffsetY = 5;
       context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
       context.restore();
       context.save();
-      context.shadowColor = 'rgba(0,0,0,0.5)'; context.shadowBlur = 4;
-      context.shadowOffsetX = -2; context.shadowOffsetY = 3;
+      context.shadowColor = 'rgba(0,0,0,0.55)'; context.shadowBlur = 2;
+      context.shadowOffsetX = -1; context.shadowOffsetY = 2;
       context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
       context.restore();
       context.save();
