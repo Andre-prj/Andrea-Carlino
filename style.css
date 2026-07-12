@@ -57,5 +57,5 @@ img { width: 100%; height: auto; display: block; }
 .library-list { animation: library-scroll 14s linear infinite; }
 @keyframes library-scroll {
   from { transform: translateY(0); }
-  to { transform: translateY(-425px); }
+  to { transform: translateY(var(--scroll-dist, -425px)); }
 }

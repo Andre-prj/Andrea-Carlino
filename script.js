@@ -14,6 +14,24 @@
 })();
 
 (function () {
+  var listGroup = document.querySelector('.library-list');
+  var startY = 1395, spacing = 85;
+  fetch('books.txt').then(function (r) { return r.text(); }).then(function (text) {
+    var books = text.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+    [books, books].forEach(function (block, blockIndex) {
+      block.forEach(function (title, i) {
+        var el = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        el.setAttribute('x', 320);
+        el.setAttribute('y', startY + (blockIndex * books.length + i) * spacing);
+        el.textContent = title;
+        listGroup.appendChild(el);
+      });
+    });
+    listGroup.style.setProperty('--scroll-dist', (-(books.length * spacing)) + 'px');
+  });
+})();
+
+(function () {
   function init() {
     var canvas = document.getElementById('globe');
     if (!canvas || typeof d3 === 'undefined') return;
