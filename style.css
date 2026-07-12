@@ -36,10 +36,16 @@ img { width: 100%; height: auto; display: block; }
   font-size: 11px; line-height: 1.2; text-align: center; width: 95px;
   opacity: 0; transition: opacity 0.6s ease;
 }
+.globe-socket {
+  position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
+  width: 266px; height: 266px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(0,0,0,0) 68%, rgba(0,0,0,0.45) 78%, rgba(0,0,0,0) 88%);
+  opacity: 0; transition: opacity 0.6s ease;
+}
 #globe {
   position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
   width: 250px; height: 250px; pointer-events: none;
   border-radius: 50%;
   opacity: 0; transition: opacity 0.6s ease;
 }
-.boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
+.boat-wrap.dark .world-title, .boat-wrap.dark #globe, .boat-wrap.dark .globe-socket { opacity: 1; }
