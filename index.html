@@ -3,164 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Boat</title>
-<style>
-  body { margin: 0; background: linear-gradient(#0a4f6b, #08324a); display: flex; justify-content: center; }
-  .boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; transform: translateX(-1.15%); }
-  img { width: 100%; height: auto; display: block; }
-  .press-circle {
-    position: absolute; top: 28%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 20px; height: 20px; border-radius: 50%;
-    padding: 30px; background: rgba(255,255,255,0.6); background-clip: content-box;
-  }
-  .press-circle::before, .press-circle::after {
-    content: ""; position: absolute; top: 50%; left: 50%;
-    width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.6);
-    transform: translate(-50%, -50%) scale(1);
-    animation: press-ripple 2s ease-out infinite;
-  }
-  .press-circle::after { animation-delay: 1s; }
-  @keyframes press-ripple {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
-  }
-  .press-circle { cursor: pointer; }
-  .dark-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: auto;
-    filter: brightness(0.25); opacity: 0; pointer-events: none;
-    transition: opacity 0.6s ease;
-  }
-  .boat-wrap.dark .dark-overlay { opacity: 1; }
-  .site-name {
-    position: fixed; top: 20px; left: 20px;
-    color: #D24525; font-family: sans-serif; font-weight: 700;
-    font-size: 18px; letter-spacing: 1px; z-index: 10;
-  }
-  .world-title {
-    position: absolute; top: 9%; left: 51.15%; transform: translateX(-50%);
-    color: #fff; font-family: sans-serif; font-weight: 700;
-    font-size: 11px; line-height: 1.2; text-align: center; width: 95px;
-    opacity: 0; transition: opacity 0.6s ease;
-  }
-  #globe {
-    position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 250px; height: 250px; pointer-events: none;
-    border-radius: 50%; box-shadow: -6px 8px 8px -2px rgba(0,0,0,0.55);
-    opacity: 0; transition: opacity 0.6s ease;
-  }
-  .boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="site-name">Andrea Carlino</div>
-  <div class="boat-wrap" onclick="if(document.querySelector('.press-circle').style.display==='none'){this.classList.toggle('dark')}">
+  <div class="boat-wrap">
     <img src="boat.svg" alt="Boat">
     <img class="dark-overlay" src="boat.svg" alt="">
-    <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
+    <div class="press-circle"></div>
     <div class="world-title">World<br>Project.</div>
     <canvas id="globe" width="250" height="250"></canvas>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-  <script>
-  (function () {
-    function init() {
-      var canvas = document.getElementById('globe');
-      if (!canvas || typeof d3 === 'undefined') return;
-      var context = canvas.getContext('2d');
-      var size = canvas.width;
-      var dpr = window.devicePixelRatio || 1;
-      canvas.width = size * dpr; canvas.height = size * dpr;
-      context.scale(dpr, dpr);
-      var radius = size / 2 - 34;
-      var projection = d3.geoOrthographic().scale(radius).translate([size / 2, size / 2]).clipAngle(90);
-      var path = d3.geoPath(projection, context);
-      var graticule = d3.geoGraticule10();
-      var rotation = [10, -12];
-      var countries = null;
-      Promise.all([
-        fetch('countries.txt').then(function (r) { return r.text(); }),
-        fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function (r) { return r.json(); })
-      ]).then(function (results) {
-        var lines = results[0].split('\n');
-        var targetNames = lines.filter(function (l) { return /\]\s*yes\s*$/i.test(l); })
-          .map(function (l) { return l.trim().replace(/^\[/, '').replace(/\]\s*yes\s*$/i, ''); });
-        var feats = topojson.feature(results[1], results[1].objects.countries).features;
-        countries = feats.filter(function (f) { return targetNames.indexOf(f.properties.name) !== -1; });
-      }).catch(function () { countries = []; });
-      function drawPin(x, y, ballScale, rodScale, angle) {
-        var s = Math.max(ballScale, 0.02);
-        var rodLength = 19 * Math.max(rodScale, 0.02), rodWidth = 1.5 * s;
-        context.save();
-        context.translate(x, y);
-        context.rotate(angle);
-        context.beginPath();
-        context.ellipse(0, 1, rodWidth * 1.6, rodWidth * 0.7, 0, 0, Math.PI * 2);
-        context.fillStyle = 'rgba(0,0,0,0.16)';
-        context.fill();
-        var rodGrad = context.createLinearGradient(-rodWidth / 2, 0, rodWidth / 2, 0);
-        rodGrad.addColorStop(0, '#6b7178'); rodGrad.addColorStop(0.5, '#e4e7ea'); rodGrad.addColorStop(1, '#4d5257');
-        context.fillStyle = rodGrad;
-        context.fillRect(-rodWidth / 2, -rodLength, rodWidth, rodLength);
-        var ballR = 3.1 * s;
-        var ballGrad = context.createRadialGradient(-ballR * 0.3, -rodLength - ballR * 0.35, ballR * 0.15, 0, -rodLength, ballR);
-        ballGrad.addColorStop(0, '#ff7a6b'); ballGrad.addColorStop(0.55, '#c0392b'); ballGrad.addColorStop(1, '#7e2015');
-        context.beginPath();
-        context.arc(0, -rodLength, ballR, 0, Math.PI * 2);
-        context.fillStyle = ballGrad;
-        context.fill();
-        context.restore();
-      }
-      function render() {
-        context.clearRect(0, 0, size, size);
-        projection.rotate(rotation);
-        context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
-        context.save();
-        context.globalCompositeOperation = 'source-atop';
-        var lightGrad = context.createRadialGradient(size * 0.68, size * 0.26, 0, size * 0.68, size * 0.26, size * 0.45);
-        lightGrad.addColorStop(0, 'rgba(255,255,255,0.75)'); lightGrad.addColorStop(1, 'rgba(255,255,255,0)');
-        context.fillStyle = lightGrad; context.fillRect(0, 0, size, size);
-        var shadeGrad = context.createRadialGradient(size * 0.3, size * 0.76, 0, size * 0.3, size * 0.76, size * 0.5);
-        shadeGrad.addColorStop(0, 'rgba(0,0,0,0.4)'); shadeGrad.addColorStop(1, 'rgba(0,0,0,0)');
-        context.fillStyle = shadeGrad; context.fillRect(0, 0, size, size);
-        context.restore();
-        context.beginPath(); path(graticule); context.strokeStyle = 'rgba(20,20,20,0.07)'; context.lineWidth = 0.6; context.stroke();
-        context.beginPath(); path({ type: 'Sphere' }); context.strokeStyle = 'rgba(20,20,20,0.22)'; context.lineWidth = 1; context.stroke();
-        if (countries && countries.length) {
-          countries.forEach(function (f) {
-            context.save();
-            context.shadowColor = 'rgba(37,99,235,0.9)'; context.shadowBlur = 14;
-            context.beginPath(); path(f); context.fillStyle = 'rgba(59,130,246,0.55)'; context.fill();
-            context.restore();
-            context.beginPath(); path(f); context.strokeStyle = 'rgba(29,78,216,0.9)'; context.lineWidth = 1.1; context.stroke();
-          });
-        }
-        var rotateFn = d3.geoRotation(rotation);
-        var pins = [];
-        (countries || []).forEach(function (f) {
-          var coord = d3.geoCentroid(f);
-          var xy = projection(coord);
-          if (!xy) return;
-          var r = rotateFn(coord);
-          var lambda = (r[0] * Math.PI) / 180, phi = (r[1] * Math.PI) / 180;
-          var z = Math.cos(phi) * Math.cos(lambda);
-          if (z < 0) return;
-          pins.push({ x: xy[0], y: xy[1], z: z });
-        });
-        pins.sort(function (a, b) { return a.z - b.z; });
-        pins.forEach(function (p) {
-          var ballScale = 0.5 + 0.5 * p.z;
-          var rodScale = Math.sqrt(Math.max(0, 1 - p.z * p.z));
-          var angle = Math.atan2(p.x - size / 2, -(p.y - size / 2));
-          drawPin(p.x, p.y, ballScale, rodScale, angle);
-        });
-      }
-      function tick() { rotation[0] += 0.55; render(); requestAnimationFrame(tick); }
-      tick();
-    }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-    else init();
-  })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
