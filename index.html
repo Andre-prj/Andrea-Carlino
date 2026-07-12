@@ -45,19 +45,10 @@
   #globe {
     position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
     width: 250px; height: 250px; pointer-events: none;
-    border-radius: 50%; box-shadow: -16px 20px 20px -4px rgba(0,0,0,0.55);
+    border-radius: 50%; box-shadow: -6px 8px 8px -2px rgba(0,0,0,0.55);
     opacity: 0; transition: opacity 0.6s ease;
   }
-  .globe-light {
-    position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 250px; height: 250px; border-radius: 50%; pointer-events: none;
-    background:
-      radial-gradient(circle at 68% 26%, rgba(255,255,255,0.65), rgba(255,255,255,0) 42%),
-      radial-gradient(circle at 30% 76%, rgba(0,0,0,0.35), rgba(0,0,0,0) 55%);
-    mix-blend-mode: overlay;
-    opacity: 0; transition: opacity 0.6s ease;
-  }
-  .boat-wrap.dark .world-title, .boat-wrap.dark #globe, .boat-wrap.dark .globe-light { opacity: 1; }
+  .boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
 </style>
 </head>
 <body>
@@ -68,7 +59,6 @@
     <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
     <div class="world-title">World<br>Project.</div>
     <canvas id="globe" width="250" height="250"></canvas>
-    <div class="globe-light"></div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -124,7 +114,16 @@
       function render() {
         context.clearRect(0, 0, size, size);
         projection.rotate(rotation);
-        context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#fcfcfb'; context.fill();
+        context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
+        context.save();
+        context.globalCompositeOperation = 'source-atop';
+        var lightGrad = context.createRadialGradient(size * 0.68, size * 0.26, 0, size * 0.68, size * 0.26, size * 0.45);
+        lightGrad.addColorStop(0, 'rgba(255,255,255,0.75)'); lightGrad.addColorStop(1, 'rgba(255,255,255,0)');
+        context.fillStyle = lightGrad; context.fillRect(0, 0, size, size);
+        var shadeGrad = context.createRadialGradient(size * 0.3, size * 0.76, 0, size * 0.3, size * 0.76, size * 0.5);
+        shadeGrad.addColorStop(0, 'rgba(0,0,0,0.4)'); shadeGrad.addColorStop(1, 'rgba(0,0,0,0)');
+        context.fillStyle = shadeGrad; context.fillRect(0, 0, size, size);
+        context.restore();
         context.beginPath(); path(graticule); context.strokeStyle = 'rgba(20,20,20,0.07)'; context.lineWidth = 0.6; context.stroke();
         context.beginPath(); path({ type: 'Sphere' }); context.strokeStyle = 'rgba(20,20,20,0.22)'; context.lineWidth = 1; context.stroke();
         if (countries && countries.length) {
