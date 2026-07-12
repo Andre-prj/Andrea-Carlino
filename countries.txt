@@ -1,4 +1,4 @@
-[Afghanistan] yes
+[Afghanistan] no
 [Albania] no
 [Algeria] no
 [Andorra] no
@@ -14,7 +14,7 @@
 [Bangladesh] no
 [Barbados] no
 [Belarus] no
-[Belgium] no
+[Belgium] yes
 [Belize] no
 [Benin] no
 [Bhutan] no
@@ -33,22 +33,22 @@
 [Central African Republic] no
 [Chad] no
 [Chile] no
-[China] no
+[China] yes
 [Colombia] no
 [Comoros] no
 [Congo] no
 [Costa Rica] no
-[Croatia] no
+[Croatia] yes
 [Cuba] no
 [Cyprus] no
-[Czechia] no
+[Czechia] yes
 [Democratic Republic of the Congo] no
 [Denmark] no
 [Djibouti] no
 [Dominica] no
 [Dominican Republic] no
 [Ecuador] no
-[Egypt] no
+[Egypt] yes
 [El Salvador] no
 [Equatorial Guinea] no
 [Eritrea] no
@@ -57,13 +57,13 @@
 [Ethiopia] no
 [Fiji] no
 [Finland] no
-[France] no
+[France] yes
 [Gabon] no
 [Gambia] no
 [Georgia] no
 [Germany] no
 [Ghana] no
-[Greece] no
+[Greece] yes
 [Grenada] no
 [Guatemala] no
 [Guinea] no
@@ -73,13 +73,13 @@
 [Honduras] no
 [Hungary] no
 [Iceland] no
-[India] no
+[India] yes
 [Indonesia] no
 [Iran] no
 [Iraq] no
-[Ireland] no
+[Ireland] yes
 [Israel] no
-[Italy] no
+[Italy] yes
 [Jamaica] no
 [Japan] no
 [Jordan] no
@@ -112,13 +112,13 @@
 [Monaco] no
 [Mongolia] no
 [Montenegro] no
-[Morocco] no
+[Morocco] yes
 [Mozambique] no
 [Myanmar] no
 [Namibia] no
 [Nauru] no
 [Nepal] no
-[Netherlands] no
+[Netherlands] yes
 [New Zealand] no
 [Nicaragua] no
 [Niger] no
@@ -136,7 +136,7 @@
 [Peru] no
 [Philippines] no
 [Poland] no
-[Portugal] no
+[Portugal] yes
 [Qatar] no
 [Romania] no
 [Russia] no
@@ -182,11 +182,11 @@
 [Ukraine] no
 [United Arab Emirates] no
 [United Kingdom] no
-[United States of America] no
+[United States of America] yes
 [Uruguay] no
 [Uzbekistan] no
 [Vanuatu] no
-[Vatican City] no
+[Vatican City] yes
 [Venezuela] no
 [Vietnam] no
 [Yemen] no
