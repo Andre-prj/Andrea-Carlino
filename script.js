@@ -64,7 +64,11 @@
     function render() {
       context.clearRect(0, 0, size, size);
       projection.rotate(rotation);
+      context.save();
+      context.shadowColor = 'rgba(0,0,0,0.5)'; context.shadowBlur = 10;
+      context.shadowOffsetX = -5; context.shadowOffsetY = 7;
       context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
+      context.restore();
       context.save();
       context.globalCompositeOperation = 'source-atop';
       var lightGrad = context.createRadialGradient(size * 0.68, size * 0.26, 0, size * 0.68, size * 0.26, size * 0.45);
