@@ -43,8 +43,8 @@
     opacity: 0; transition: opacity 0.6s ease;
   }
   #globe {
-    position: absolute; top: 25%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 180px; height: 180px; pointer-events: none;
+    position: absolute; top: 22%; left: 51.15%; transform: translate(-50%, -50%);
+    width: 210px; height: 210px; pointer-events: none;
     opacity: 0; transition: opacity 0.6s ease;
   }
   .boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
@@ -57,7 +57,7 @@
     <img class="dark-overlay" src="boat.svg" alt="">
     <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
     <div class="world-title">World<br>Project.</div>
-    <canvas id="globe" width="180" height="180"></canvas>
+    <canvas id="globe" width="210" height="210"></canvas>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -131,6 +131,7 @@
           var r = rotateFn(coord);
           var lambda = (r[0] * Math.PI) / 180, phi = (r[1] * Math.PI) / 180;
           var z = Math.cos(phi) * Math.cos(lambda);
+          if (z < 0) return;
           pins.push({ x: xy[0], y: xy[1], z: z });
         });
         pins.sort(function (a, b) { return a.z - b.z; });
@@ -140,7 +141,7 @@
           drawPin(p.x, p.y, scale, angle);
         });
       }
-      function tick() { rotation[0] += 0.15; render(); requestAnimationFrame(tick); }
+      function tick() { rotation[0] += 0.35; render(); requestAnimationFrame(tick); }
       tick();
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
