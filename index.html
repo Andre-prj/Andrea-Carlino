@@ -44,7 +44,7 @@
   }
   #globe {
     position: absolute; top: 21%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 225px; height: 225px; pointer-events: none;
+    width: 250px; height: 250px; pointer-events: none;
     opacity: 0; transition: opacity 0.6s ease;
   }
   .boat-wrap.dark .world-title, .boat-wrap.dark #globe { opacity: 1; }
@@ -57,7 +57,7 @@
     <img class="dark-overlay" src="boat.svg" alt="">
     <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
     <div class="world-title">World<br>Project.</div>
-    <canvas id="globe" width="225" height="225"></canvas>
+    <canvas id="globe" width="250" height="250"></canvas>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -68,6 +68,9 @@
       if (!canvas || typeof d3 === 'undefined') return;
       var context = canvas.getContext('2d');
       var size = canvas.width;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width = size * dpr; canvas.height = size * dpr;
+      context.scale(dpr, dpr);
       var radius = size / 2 - 34;
       var projection = d3.geoOrthographic().scale(radius).translate([size / 2, size / 2]).clipAngle(90);
       var path = d3.geoPath(projection, context);
@@ -84,9 +87,9 @@
         var feats = topojson.feature(results[1], results[1].objects.countries).features;
         countries = feats.filter(function (f) { return targetNames.indexOf(f.properties.name) !== -1; });
       }).catch(function () { countries = []; });
-      function drawPin(x, y, scale, angle) {
-        var s = Math.max(scale, 0.02);
-        var rodLength = 19 * s, rodWidth = 1.5 * s;
+      function drawPin(x, y, ballScale, rodScale, angle) {
+        var s = Math.max(ballScale, 0.02);
+        var rodLength = 19 * Math.max(rodScale, 0.02), rodWidth = 1.5 * s;
         context.save();
         context.translate(x, y);
         context.rotate(angle);
@@ -136,9 +139,10 @@
         });
         pins.sort(function (a, b) { return a.z - b.z; });
         pins.forEach(function (p) {
-          var scale = p.z;
+          var ballScale = 0.5 + 0.5 * p.z;
+          var rodScale = Math.sqrt(Math.max(0, 1 - p.z * p.z));
           var angle = Math.atan2(p.x - size / 2, -(p.y - size / 2));
-          drawPin(p.x, p.y, scale, angle);
+          drawPin(p.x, p.y, ballScale, rodScale, angle);
         });
       }
       function tick() { rotation[0] += 0.55; render(); requestAnimationFrame(tick); }
