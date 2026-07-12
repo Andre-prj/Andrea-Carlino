@@ -43,18 +43,27 @@
     opacity: 0; transition: opacity 0.6s ease;
   }
   .globe-socket {
-    position: absolute; top: 21%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 272px; height: 272px; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(circle, rgba(0,0,0,0) 62%, rgba(0,0,0,0.55) 80%, rgba(0,0,0,0) 94%);
+    position: absolute; top: 24%; left: 51.15%; transform: translate(-50%, -50%);
+    width: 232px; height: 232px; border-radius: 50%; pointer-events: none;
+    box-shadow: 14px 20px 22px rgba(0,0,0,0.55);
     opacity: 0; transition: opacity 0.6s ease;
   }
   #globe {
-    position: absolute; top: 21%; left: 51.15%; transform: translate(-50%, -50%);
-    width: 250px; height: 250px; pointer-events: none;
-    border-radius: 50%; box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+    position: absolute; top: 24%; left: 51.15%; transform: translate(-50%, -50%);
+    width: 225px; height: 225px; pointer-events: none;
+    border-radius: 50%;
     opacity: 0; transition: opacity 0.6s ease;
   }
-  .boat-wrap.dark .world-title, .boat-wrap.dark #globe, .boat-wrap.dark .globe-socket { opacity: 1; }
+  .globe-light {
+    position: absolute; top: 24%; left: 51.15%; transform: translate(-50%, -50%);
+    width: 225px; height: 225px; border-radius: 50%; pointer-events: none;
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255,255,255,0.65), rgba(255,255,255,0) 42%),
+      radial-gradient(circle at 68% 74%, rgba(0,0,0,0.35), rgba(0,0,0,0) 55%);
+    mix-blend-mode: overlay;
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  .boat-wrap.dark .world-title, .boat-wrap.dark #globe, .boat-wrap.dark .globe-socket, .boat-wrap.dark .globe-light { opacity: 1; }
 </style>
 </head>
 <body>
@@ -65,7 +74,8 @@
     <div class="press-circle" onclick="event.stopPropagation(); this.parentElement.classList.toggle('dark'); this.style.display='none'"></div>
     <div class="world-title">World<br>Project.</div>
     <div class="globe-socket"></div>
-    <canvas id="globe" width="250" height="250"></canvas>
+    <canvas id="globe" width="225" height="225"></canvas>
+    <div class="globe-light"></div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
