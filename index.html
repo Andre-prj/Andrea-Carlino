@@ -8,13 +8,24 @@
 <body>
   <div class="site-name">Andrea Carlino</div>
   <div class="boat-wrap">
-    <svg class="foam-overlay" viewBox="0 0 1026 2251" xmlns="http://www.w3.org/2000/svg">
+    <svg class="foam-overlay" viewBox="0 0 1026 3100" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="foamFade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
           <stop offset="0.55" stop-color="#fff" stop-opacity="0.45"/>
           <stop offset="1" stop-color="#fff" stop-opacity="0"/>
         </linearGradient>
+        <linearGradient id="wakeFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="0.7"/>
+          <stop offset="0.45" stop-color="#fff" stop-opacity="0.35"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="wakeGlow" cx="0.5" cy="0.12" r="0.9">
+          <stop offset="0" stop-color="#fff" stop-opacity="0.26"/>
+          <stop offset="0.3" stop-color="#fff" stop-opacity="0.12"/>
+          <stop offset="0.58" stop-color="#fff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </radialGradient>
       </defs>
       <path class="splash s1" d="M488,164 Q524,116 560,164"/>
       <path class="splash s2" d="M478,180 Q524,124 570,180"/>
@@ -22,6 +33,14 @@
       <path class="foam-line f2" d="M500,150 Q450,180 430,228 Q404,272 386,318 Q366,360 350,408 Q336,450 320,498 Q308,540 296,588 Q286,630 276,678"/>
       <path class="foam-line f1" d="M525,124 Q579,160 605,225 Q634,270 650,315 Q671,358 686,405 Q706,450 721,495 Q736,540 747,585 Q760,628 769,675 Q777,735 781,800 Q786,850 791,900"/>
       <path class="foam-line f2" d="M549,150 Q599,180 619,228 Q645,272 663,318 Q683,360 699,408 Q713,450 729,498 Q741,540 753,588 Q763,630 773,678"/>
+      <rect x="345" y="2120" width="360" height="960" fill="url(#wakeGlow)"/>
+      <path class="wake-line wake-arm" d="M252,1450 C240,1750 225,2150 215,2500 C210,2700 208,2850 206,3020"/>
+      <path class="wake-line wake-arm" d="M797,1450 C809,1750 824,2150 834,2500 C839,2700 841,2850 843,3020"/>
+      <path class="wake-line wake-streak" d="M330,2080 C330,2280 325,2520 318,2760 C315,2880 313,2960 312,3040"/>
+      <path class="wake-line wake-streak" d="M700,2080 C702,2280 707,2520 714,2760 C717,2880 719,2960 720,3040"/>
+      <path class="wake-line wake-streak" d="M450,2180 C447,2400 452,2650 448,2900 L449,3040"/>
+      <path class="wake-line wake-streak" d="M525,2220 C528,2460 522,2710 526,2950 L525,3060"/>
+      <path class="wake-line wake-streak" d="M600,2180 C603,2400 598,2650 602,2900 L601,3040"/>
     </svg>
     <img src="boat.svg" alt="Boat">
     <img class="dark-overlay" src="boat.svg" alt="">
