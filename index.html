@@ -13,6 +13,29 @@
     <div class="press-circle"></div>
     <div class="world-title">World<br>Project.</div>
     <canvas id="globe" width="250" height="250"></canvas>
+    <svg class="library-overlay" viewBox="0 0 1026 2251" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="seatClip" clipPathUnits="userSpaceOnUse">
+          <path d="M333,1245 H647 Q687,1245 687,1285 V1710 Q687,1750 647,1750 H333 Q293,1750 293,1710 V1285 Q293,1245 333,1245 Z"/>
+        </clipPath>
+      </defs>
+      <path class="seat-outline" d="M333,1245 H647 Q687,1245 687,1285 V1710 Q687,1750 647,1750 H333 Q293,1750 293,1710 V1285 Q293,1245 333,1245 Z"/>
+      <g clip-path="url(#seatClip)">
+        <text class="library-title" x="320" y="1310">On the top of my library</text>
+        <g class="library-list">
+          <text x="320" y="1395">Book A + Author A</text>
+          <text x="320" y="1480">Book B + Author B</text>
+          <text x="320" y="1565">Book C + Author C</text>
+          <text x="320" y="1650">Book D + Author D</text>
+          <text x="320" y="1735">Book E + Author E</text>
+          <text x="320" y="1820">Book A + Author A</text>
+          <text x="320" y="1905">Book B + Author B</text>
+          <text x="320" y="1990">Book C + Author C</text>
+          <text x="320" y="2075">Book D + Author D</text>
+          <text x="320" y="2160">Book E + Author E</text>
+        </g>
+      </g>
+    </svg>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
