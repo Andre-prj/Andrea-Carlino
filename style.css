@@ -1,6 +1,8 @@
+html { background: #08324a; }
 body { margin: 0; background: linear-gradient(#0a4f6b, #08324a); display: flex; justify-content: center; }
 .boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; transform: translateX(-1.15%); }
 img { width: 100%; height: auto; display: block; }
+.boat-backing { position: absolute; top: 0; left: 0; z-index: -1; filter: brightness(0) blur(1px) contrast(6); }
 .press-circle {
   position: absolute; top: 28%; left: 51.15%; transform: translate(-50%, -50%);
   width: 20px; height: 20px; border-radius: 50%;
