@@ -1,5 +1,5 @@
 body { margin: 0; background: linear-gradient(#0a4f6b, #08324a); display: flex; justify-content: center; }
-.boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; margin-bottom: min(83vw, 497px); transform: translateX(-1.15%); }
+.boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; transform: translateX(-1.15%); }
 img { width: 100%; height: auto; display: block; }
 .press-circle {
   position: absolute; top: 28%; left: 51.15%; transform: translate(-50%, -50%);
@@ -59,29 +59,3 @@ img { width: 100%; height: auto; display: block; }
   from { transform: translateY(0); }
   to { transform: translateY(var(--scroll-dist, -425px)); }
 }
-.foam-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 137.7%; pointer-events: none; }
-.foam-line {
-  fill: none; stroke: url(#foamFade); stroke-width: 7; stroke-linecap: round;
-  stroke-dasharray: 34 26 12 30 22 38;
-  stroke-dashoffset: var(--so, 0px);
-}
-.foam-line.f2 {
-  stroke-width: 5; opacity: 0.7;
-  stroke-dasharray: 24 30 10 36;
-  stroke-dashoffset: var(--so, 0px);
-}
-.splash {
-  fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; opacity: 0.5;
-}
-.wake-line { fill: none; stroke: url(#wakeFade); stroke-linecap: round; }
-.wake-arm {
-  stroke-width: 11;
-  stroke-dasharray: 46 30 18 40 26 52;
-  stroke-dashoffset: var(--so, 0px);
-}
-.wake-streak {
-  stroke-width: 8; opacity: 0.7;
-  stroke-dasharray: 34 26 12 38 22 44;
-  stroke-dashoffset: var(--so, 0px);
-}
-.wake-streak:nth-of-type(3n) { stroke-width: 6; }
