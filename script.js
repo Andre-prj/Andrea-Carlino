@@ -11,6 +11,18 @@
     boatWrap.classList.toggle('dark');
     pressCircle.style.display = 'none';
   });
+
+  var aqua = [[26, 143, 181], [20, 110, 150]], deep = [[5, 30, 50], [3, 20, 32]];
+  function mix(a, b, t) { return a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }); }
+  function updateSea() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var t = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    var top = mix(aqua[0], deep[0], t), bottom = mix(aqua[1], deep[1], t);
+    document.documentElement.style.setProperty('--sea-top', 'rgb(' + top + ')');
+    document.documentElement.style.setProperty('--sea-bottom', 'rgb(' + bottom + ')');
+  }
+  window.addEventListener('scroll', updateSea, { passive: true });
+  updateSea();
 })();
 
 (function () {
