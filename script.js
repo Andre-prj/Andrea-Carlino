@@ -12,27 +12,6 @@
     pressCircle.style.display = 'none';
   });
 
-  var aqua = [[26, 143, 181], [20, 110, 150]], deep = [[5, 30, 50], [3, 20, 32]];
-  var current = [aqua[0].slice(), aqua[1].slice()], target = [aqua[0].slice(), aqua[1].slice()];
-  function mix(a, b, t) { return a.map(function (v, i) { return v + (b[i] - v) * t; }); }
-  function updateTarget() {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    var t = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-    target = [mix(aqua[0], deep[0], t), mix(aqua[1], deep[1], t)];
-  }
-  function toRgb(c) { return 'rgb(' + c.map(Math.round) + ')'; }
-  function tick() {
-    current = [mix(current[0], target[0], 0.05), mix(current[1], target[1], 0.05)];
-    var root = document.documentElement;
-    root.style.setProperty('--sea-top', toRgb(current[0]));
-    root.style.setProperty('--sea-bottom', toRgb(current[1]));
-    var max = root.scrollHeight - window.innerHeight;
-    root.style.backgroundColor = toRgb(!max || window.scrollY < max / 2 ? current[0] : current[1]);
-    requestAnimationFrame(tick);
-  }
-  window.addEventListener('scroll', updateTarget, { passive: true });
-  updateTarget();
-  tick();
 })();
 
 (function () {
@@ -154,7 +133,10 @@
         drawPin(p.x, p.y, ballScale, rodScale, angle);
       });
     }
-    function tick() { rotation[0] += 0.55; render(); requestAnimationFrame(tick); }
+    function tick() {
+      if (document.querySelector('.boat-wrap').classList.contains('dark')) { rotation[0] += 0.55; render(); }
+      requestAnimationFrame(tick);
+    }
     tick();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

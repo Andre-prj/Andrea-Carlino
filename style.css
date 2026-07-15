@@ -1,5 +1,5 @@
-html { background: linear-gradient(var(--sea-top, #0a4f6b), var(--sea-bottom, #08324a)); }
-body { margin: 0; display: flex; justify-content: center; }
+html { background: #0a4159; }
+body { margin: 0; background: linear-gradient(#0a4f6b, #08324a); display: flex; justify-content: center; }
 .boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; transform: translateX(-1.15%); }
 img { width: 100%; height: auto; display: block; }
 .boat-backing { position: absolute; top: 0; left: 0; z-index: -1; filter: brightness(0) blur(1px) contrast(6); }
@@ -56,7 +56,7 @@ img { width: 100%; height: auto; display: block; }
 }
 .library-title { font-size: 26px; }
 .library-list text { font-size: 24px; font-weight: 400; }
-.library-list { animation: library-scroll 14s linear infinite; }
+.boat-wrap.dark .library-list { animation: library-scroll 14s linear infinite; }
 @keyframes library-scroll {
   from { transform: translateY(0); }
   to { transform: translateY(var(--scroll-dist, -425px)); }
