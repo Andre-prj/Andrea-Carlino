@@ -60,9 +60,9 @@ img { width: 100%; height: auto; display: block; }
   opacity: 0; transition: opacity 0.6s ease;
 }
 .boat-wrap.dark .library-overlay { opacity: 1; }
-.seat-outline { fill: none; stroke: #fff; stroke-width: 3; }
+.seat-outline { fill: none; stroke: rgba(0,0,0,0.25); stroke-width: 3; }
 .library-title, .library-list text {
-  fill: #fff; font-family: sans-serif; font-weight: 700;
+  fill: #111; font-family: sans-serif; font-weight: 700;
 }
 .library-title { font-size: 26px; }
 .library-list text { font-size: 24px; font-weight: 400; }
