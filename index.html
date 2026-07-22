@@ -11,31 +11,8 @@
   <div class="boat-wrap">
     <img class="boat-backing" src="boat.svg" alt="">
     <img class="boat-main" src="boat.svg" alt="Boat">
-    <img class="dark-overlay" src="boat-dark.svg" alt="">
     <div class="press-circle"></div>
-    <div class="world-title">World<br>Project.</div>
-    <canvas id="globe" width="250" height="250"></canvas>
-    <svg class="library-overlay" viewBox="0 0 1026 2251" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="seatClip" clipPathUnits="userSpaceOnUse">
-          <path d="M335,1250 L320,1270 L309,1290 L308,1320 L309,1350 L309,1380 L309,1410 L316,1440 L319,1470 L322,1500 L323,1530 L323,1560 L325,1590 L329,1620 L339,1650 L341,1680 L345,1710 L357,1725 L372,1745 Q372,1759 524,1759 Q675,1759 675,1745 L689,1725 L702,1710 L709,1680 L709,1650 L717,1620 L721,1590 L725,1560 L728,1530 L731,1500 L734,1470 L736,1440 L739,1410 L739,1380 L733,1350 L734,1320 L739,1290 L723,1270 L705,1250 Q705,1238 520,1238 Q335,1238 335,1250 Z"/>
-        </clipPath>
-        <pattern id="cushionPattern" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <rect width="16" height="16" fill="#ffffff"/>
-          <line x1="0" y1="0" x2="0" y2="16" stroke="#e6e6e6" stroke-width="4"/>
-        </pattern>
-      </defs>
-      <path class="cushion-fill" fill="url(#cushionPattern)" d="M400,900 L360,940 L327,970 L294,1000 L262,1030 L260,1060 L260,1090 L279,1120 L284,1150 L293,1180 L284,1210 L281,1235 Q281,1241 518,1241 Q754,1241 754,1235 L753,1210 L753,1180 L753,1150 L764,1120 L764,1090 L759,1060 L758,1030 L744,1000 L715,970 L674,940 L595,900 Q595,880 498,880 Q400,880 400,900 Z"/>
-      <path class="cushion-fill" fill="url(#cushionPattern)" d="M335,1250 L320,1270 L309,1290 L308,1320 L309,1350 L309,1380 L309,1410 L316,1440 L319,1470 L322,1500 L323,1530 L323,1560 L325,1590 L329,1620 L339,1650 L341,1680 L345,1710 L357,1725 L372,1745 Q372,1759 524,1759 Q675,1759 675,1745 L689,1725 L702,1710 L709,1680 L709,1650 L717,1620 L721,1590 L725,1560 L728,1530 L731,1500 L734,1470 L736,1440 L739,1410 L739,1380 L733,1350 L734,1320 L739,1290 L723,1270 L705,1250 Q705,1238 520,1238 Q335,1238 335,1250 Z"/>
-      <path class="seat-outline" d="M335,1250 L320,1270 L309,1290 L308,1320 L309,1350 L309,1380 L309,1410 L316,1440 L319,1470 L322,1500 L323,1530 L323,1560 L325,1590 L329,1620 L339,1650 L341,1680 L345,1710 L357,1725 L372,1745 Q372,1759 524,1759 Q675,1759 675,1745 L689,1725 L702,1710 L709,1680 L709,1650 L717,1620 L721,1590 L725,1560 L728,1530 L731,1500 L734,1470 L736,1440 L739,1410 L739,1380 L733,1350 L734,1320 L739,1290 L723,1270 L705,1250 Q705,1238 520,1238 Q335,1238 335,1250 Z"/>
-      <g clip-path="url(#seatClip)">
-        <text class="library-title" x="320" y="1310">On the top of my library</text>
-        <g class="library-list"></g>
-      </g>
-    </svg>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
   <script src="script.js"></script>
 </body>
 </html>
