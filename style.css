@@ -1,6 +1,6 @@
-html, body { background: linear-gradient(#0a4f6b, #08324a); background-attachment: fixed; }
-body { margin: 0; display: flex; justify-content: center; }
-.boat-wrap { position: relative; width: 100%; max-width: 600px; margin-top: 80vh; transform: translateX(-1.15%); }
+html { background: #000; }
+body { margin: 0; display: flex; justify-content: center; background: linear-gradient(#f2f2f2, #000); }
+.boat-wrap { position: relative; width: 100%; max-width: 680px; margin-top: 32vh; transform: translateX(-1.15%); }
 img { width: 100%; height: auto; display: block; }
 .boat-backing { position: absolute; top: 0; left: 0; z-index: -1; filter: brightness(0) blur(1px) contrast(6); }
 .press-circle {
@@ -29,9 +29,18 @@ img { width: 100%; height: auto; display: block; }
 .boat-wrap.dark .dark-overlay { opacity: 1; }
 .site-name {
   position: fixed; top: 20px; left: 20px;
-  color: #D24525; font-family: sans-serif; font-weight: 700;
+  color: #fff; font-family: sans-serif; font-weight: 700;
   font-size: 18px; letter-spacing: 1px; z-index: 10;
 }
+.site-nav {
+  position: fixed; top: 24px; right: 24px; z-index: 10;
+  display: flex; gap: 24px;
+}
+.site-nav a {
+  color: #fff; font-family: sans-serif; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.5px; text-decoration: none; opacity: 0.85;
+}
+.site-nav a:hover { opacity: 1; }
 .world-title {
   position: absolute; top: 9%; left: 51.15%; transform: translateX(-50%);
   color: #fff; font-family: sans-serif; font-weight: 700;
