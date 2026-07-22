@@ -1,5 +1,5 @@
-html { background: #000; }
-body { margin: 0; display: flex; justify-content: center; background: linear-gradient(#f2f2f2, #000); }
+html { background: #0a0d12; }
+body { margin: 0; display: flex; justify-content: center; background: linear-gradient(#f2f2f2, #14181f); }
 .boat-wrap { position: relative; width: 100%; max-width: 680px; margin-top: 32vh; transform: translateX(-1.15%); }
 img { width: 100%; height: auto; display: block; }
 .boat-backing { position: absolute; top: 0; left: 0; z-index: -1; filter: brightness(0) blur(1px) contrast(6); }
