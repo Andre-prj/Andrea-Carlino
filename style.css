@@ -34,7 +34,8 @@ img { width: 100%; height: auto; display: block; }
   font-size: 18px; letter-spacing: 1px; z-index: 10;
   transition: color 0.6s ease;
 }
-body.dark .site-name { color: #95705F; }
+.accent-letter { transition: color 0.6s ease; }
+body.dark .accent-letter { color: #95705F; }
 .site-nav {
   position: fixed; top: 24px; right: 24px; z-index: 10;
   display: flex; gap: 24px;
@@ -45,7 +46,6 @@ body.dark .site-name { color: #95705F; }
   transition: color 0.6s ease;
 }
 .site-nav a:hover { opacity: 1; }
-body.dark .site-nav a { color: #95705F; }
 #globe {
   position: absolute; top: 23%; left: 51.15%; transform: translate(-50%, -50%);
   width: 250px; height: 250px; pointer-events: none;
