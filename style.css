@@ -35,7 +35,7 @@ img { width: 100%; height: auto; display: block; }
   transition: color 0.6s ease;
 }
 .accent-letter { transition: color 0.6s ease; }
-body.dark .accent-letter { color: #d24625; }
+body.dark .accent-letter { color: #d03f23; }
 .site-nav {
   position: fixed; top: 24px; right: 24px; z-index: 10;
   display: flex; gap: 24px;

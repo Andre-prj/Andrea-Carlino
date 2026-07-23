@@ -48,7 +48,7 @@
       context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
       context.beginPath(); path(graticule); context.strokeStyle = 'rgba(255,255,255,0.6)'; context.lineWidth = 0.6; context.stroke();
       countries.forEach(function (f) {
-        context.beginPath(); path(f); context.fillStyle = '#d24625'; context.fill();
+        context.beginPath(); path(f); context.fillStyle = '#d03f23'; context.fill();
       });
       context.save();
       context.beginPath(); path({ type: 'Sphere' });
