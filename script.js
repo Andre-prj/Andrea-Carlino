@@ -30,7 +30,7 @@
     var projection = d3.geoOrthographic().scale(radius).translate([size / 2, size / 2]).clipAngle(90);
     var path = d3.geoPath(projection, context);
     var graticule = d3.geoGraticule10();
-    var rotation = [0, -12];
+    var rotation = [0, -35];
     var countries = [];
     Promise.all([
       fetch('countries.txt').then(function (r) { return r.text(); }),
@@ -45,7 +45,7 @@
     function render() {
       context.clearRect(0, 0, size, size);
       projection.rotate(rotation);
-      context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#cdd2d6'; context.fill();
+      context.beginPath(); path({ type: 'Sphere' }); context.fillStyle = '#c3d3dc'; context.fill();
       context.beginPath(); path(graticule); context.strokeStyle = 'rgba(255,255,255,0.6)'; context.lineWidth = 0.6; context.stroke();
       countries.forEach(function (f) {
         context.beginPath(); path(f); context.fillStyle = '#d03f23'; context.fill();
